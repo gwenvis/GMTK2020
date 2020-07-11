@@ -5,15 +5,7 @@ using UnityEngine.UIElements;
 
 public class MouseCursor : MonoBehaviour
 {
-
-    float timeOfTravel = 5;
-    float currentTime = 0; 
-    float normalizedValue;
-    Vector3 newPos;
     RectTransform rectTransform;
-
-    float x;
-    float y;
 
     void Start()
     {
@@ -23,28 +15,14 @@ public class MouseCursor : MonoBehaviour
 
     void Update()
     {
-        transform.position = Input.mousePosition;
+        UnityEngine.Cursor.lockState = CursorLockMode.Locked;
 
-        if (Input.GetMouseButtonDown(0))
-        {
-            x = Random.Range(0, 10);
-            y = Random.Range(0, 10);
+        float mouseX = Input.GetAxisRaw("Mouse X");
+        float mouseY = Input.GetAxisRaw("Mouse Y");
 
-            newPos = new Vector3(x, y, 0);
-
-            StartCoroutine(LerpObject());
-        }
-    }
-
-    IEnumerator LerpObject()
-    {
-        while (currentTime <= timeOfTravel)
-        {
-            currentTime += Time.deltaTime;
-            normalizedValue = currentTime / timeOfTravel;
-
-            rectTransform.anchoredPosition = Vector3.Lerp(transform.position, newPos, normalizedValue);
-            yield return null;
-        }
+        Vector3 pos = rectTransform.anchoredPosition;
+        pos.x += mouseX * 6;
+        pos.y += mouseY * 6;
+        rectTransform.anchoredPosition = pos;
     }
 }
