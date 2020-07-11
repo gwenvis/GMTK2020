@@ -131,9 +131,6 @@ public abstract class VirtualPointerInput : BaseInputModule
 		this.eventSystem.RaycastAll(data1, this.m_RaycastResultCache);
 		RaycastResult firstRaycast = BaseInputModule.FindFirstRaycast(this.m_RaycastResultCache);
 		data1.pointerCurrentRaycast = firstRaycast;
-
-		Debug.Log(mousePos);
-
 		this.m_RaycastResultCache.Clear();
 		PointerEventData data2;
 		this.GetPointerData(-2, out data2, true);
