@@ -34,9 +34,9 @@ public class MouseCursor : MonoBehaviour
         float mouseY = Input.GetAxisRaw("Mouse Y");
 
         Vector3 pos = rectTransform.anchoredPosition;
-        pos.x += mouseX * 6;
-        pos.y += mouseY * 6;
-        rectTransform.anchoredPosition = pos;
+        pos.x += mouseX * 2;
+        pos.y += mouseY * 2;
+        rectTransform.anchoredPosition = new Vector3(Mathf.RoundToInt(pos.x), Mathf.RoundToInt(pos.y), Mathf.Round(pos.z));
 
         rectTransform.anchoredPosition = new Vector3(Mathf.Clamp(rectTransform.anchoredPosition.x, BoundaryMinX, BoundaryMaxX), Mathf.Clamp(rectTransform.anchoredPosition.y, BoundaryMinY, BoundaryMaxY), 0);
     }
