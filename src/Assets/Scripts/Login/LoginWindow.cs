@@ -12,6 +12,25 @@ public class LoginWindow : MonoBehaviour
     [SerializeField] private GameObject login;
     [SerializeField] private GameObject loadingBar;
 
+    private void Start()
+    {
+        username.Select();
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Tab))
+        {
+            if (username.isFocused) 
+            {
+                password.Select();
+            } else
+            {
+                username.Select();
+            }
+        }
+    }
+
     public void OnConfirm()
     {
         if (username.text != "" && password.text != "")
