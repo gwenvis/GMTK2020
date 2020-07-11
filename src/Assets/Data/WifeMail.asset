@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4aacfb1ed2d88d4db2ede6796e106a0, type: 3}
+  m_Name: WifeMail
+  m_EditorClassIdentifier: 
+  name: Michelle Schouten
+  subject: "Anton, please find a job\u2026"
+  message: "From: your_wife_michelle@email.com\r\n\r\nHello Anton,\r\n\r\nI\u2019m
+    sorry it has come to this, but you leave me no other choice. You\u2019re lazing
+    around all the time, not earning any money. The least you could do is help around
+    the household! This message marks the last time you\u2019ll hear from me.\r\n\r\nI
+    really urge you to find a job or a hobby. At least do something, rid yourself
+    of this loser lifestyle. I wish you the best of luck, you can do it.\r\n\r\nTake
+    care,\r\nMichelle Schouten.\r\n"
