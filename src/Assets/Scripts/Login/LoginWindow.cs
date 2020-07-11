@@ -28,7 +28,7 @@ public class LoginWindow : MonoBehaviour
             {
                 username.Select();
             }
-        }
+        } 
     }
 
     public void OnConfirm()

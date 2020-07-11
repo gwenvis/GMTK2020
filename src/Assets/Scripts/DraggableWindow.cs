@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using UnityEngine.Events;
 
 public class DraggableWindow : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandler
 {
@@ -10,6 +11,9 @@ public class DraggableWindow : MonoBehaviour, IDragHandler, IBeginDragHandler, I
     [SerializeField] private Button exitButton;
     [SerializeField] private Button maximizeButton; // might be unused as it's kind of useless
     [SerializeField] private Button minimizeButton; // might be unused?
+
+    [SerializeField] private UnityEvent closeCallback;
+    [SerializeField] private UnityEvent confirmCallback;
 
     private Vector2 lastMousePos;
     private RectTransform rectTransform;
@@ -33,8 +37,24 @@ public class DraggableWindow : MonoBehaviour, IDragHandler, IBeginDragHandler, I
         GetComponent<WindowCloseAnimation>().StartClosure(CloseWindow);
     }
 
+    public void OnConfirmButtonClicked()
+    {
+        GetComponent<WindowCloseAnimation>().StartClosure(ConfirmWindow);
+    }
+
     private void CloseWindow()
     {
+        if (closeCallback != null)
+            closeCallback.Invoke();
+
+        Destroy(gameObject);
+    }
+
+    private void ConfirmWindow()
+    {
+        if (confirmCallback != null)
+            confirmCallback.Invoke();
+
         Destroy(gameObject);
     }
 
