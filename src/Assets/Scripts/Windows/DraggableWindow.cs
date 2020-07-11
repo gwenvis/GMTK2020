@@ -13,6 +13,7 @@ public class DraggableWindow : MonoBehaviour, IDragHandler, IBeginDragHandler, I
 
     private Vector2 lastMousePos;
     private RectTransform rectTransform;
+    private Vector3 position;
 
     private bool dragging = false;
 
@@ -21,11 +22,17 @@ public class DraggableWindow : MonoBehaviour, IDragHandler, IBeginDragHandler, I
         rectTransform = GetComponent<RectTransform>();
 
         exitButton.onClick.AddListener(OnExitButtonClicked);
+        position = rectTransform.position;
     }
 
     private void OnDestroy()
     {
         exitButton.onClick.RemoveListener(OnExitButtonClicked);
+    }
+
+    private void LateUpdate()
+    {
+        rectTransform.position = new Vector3(Mathf.RoundToInt(position.x), Mathf.RoundToInt(position.y), Mathf.RoundToInt(position.z));
     }
 
     private void OnExitButtonClicked()
@@ -40,10 +47,14 @@ public class DraggableWindow : MonoBehaviour, IDragHandler, IBeginDragHandler, I
 
     public void OnBeginDrag(PointerEventData eventData)
     {
+        Debug.Log("Clicked");
+
         if(!header) return;
 
         if(header.OverlapPoint(eventData.position))
         {
+            Debug.Log("In header");
+
             dragging = true;
             lastMousePos = eventData.position;
         }
@@ -57,7 +68,7 @@ public class DraggableWindow : MonoBehaviour, IDragHandler, IBeginDragHandler, I
         Vector2 mousePos = eventData.position;
         Vector3 vec = mousePos - lastMousePos;
 
-        rectTransform.position += vec;
+        position += vec;
         lastMousePos = eventData.position;
     }
 

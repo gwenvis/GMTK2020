@@ -16,7 +16,7 @@ public class BoxColliderResizer : MonoBehaviour
 
         Debug.Log(rectTransform.sizeDelta);
 
-        boxCollider.size = rectTransform.sizeDelta;
-        boxCollider.offset = new Vector2(0, boxCollider.size.y / 2 * -1);
+        boxCollider.size = new Vector2(rectTransform.rect.width, rectTransform.rect.height);
+        boxCollider.offset = new Vector2(0, 0);// boxCollider.size.y / 2 * -1);
     }
 }
