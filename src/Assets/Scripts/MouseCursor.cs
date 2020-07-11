@@ -19,6 +19,9 @@ public class MouseCursor : MonoBehaviour
         UnityEngine.Cursor.visible = false;
         rectTransform = GetComponent<RectTransform>();
 
+        if (!collider)
+            return;
+
         BoundaryMinX = collider.offset.x - (collider.size.x / 2f);
         BoundaryMaxX = collider.offset.x + (collider.size.x / 2f);
         
@@ -34,10 +37,16 @@ public class MouseCursor : MonoBehaviour
         float mouseY = Input.GetAxisRaw("Mouse Y");
 
         Vector3 pos = rectTransform.anchoredPosition;
-        pos.x += mouseX * 6;
-        pos.y += mouseY * 6;
-        rectTransform.anchoredPosition = pos;
+        pos.x += mouseX * 2;
+        pos.y += mouseY * 2;
 
-        rectTransform.anchoredPosition = new Vector3(Mathf.Clamp(rectTransform.anchoredPosition.x, BoundaryMinX, BoundaryMaxX), Mathf.Clamp(rectTransform.anchoredPosition.y, BoundaryMinY, BoundaryMaxY), 0);
+
+        if(collider)
+            rectTransform.anchoredPosition = new Vector3(Mathf.RoundToInt(Mathf.Clamp(pos.x, BoundaryMinX, BoundaryMaxX)),
+                                                     Mathf.RoundToInt(Mathf.Clamp(pos.y, BoundaryMinY, BoundaryMaxY)),
+                                                     0);
+        else
+            rectTransform.anchoredPosition = new Vector3(Mathf.RoundToInt(pos.x), Mathf.RoundToInt(pos.y), Mathf.Round(pos.z));
+
     }
 }
